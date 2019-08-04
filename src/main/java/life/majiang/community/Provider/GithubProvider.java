@@ -2,10 +2,12 @@ package life.majiang.community.Provider;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import life.majiang.community.GitHubArgs;
 import life.majiang.community.dto.AccessTokenDto;
 import life.majiang.community.dto.GithubUserDto;
 import life.majiang.community.util.ConstantUtil;
 import okhttp3.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -17,6 +19,8 @@ import java.io.IOException;
 @Component
 public class GithubProvider {
 
+    @Autowired
+    private GitHubArgs gitHubArgs;
     /**
      * 获取accessToken的值
      * @param accessTokenDto 五个参数，故把它们封装成一个类
@@ -28,7 +32,7 @@ public class GithubProvider {
         OkHttpClient client = new OkHttpClient();
         RequestBody body = RequestBody.create(mediaType,JSON.toJSONString(accessTokenDto));
         Request request = new Request.Builder()
-                .url(ConstantUtil.GET_TOKEN_URL)
+                .url(gitHubArgs.getTokenUrl())
                 .post(body)
                 .build();
         try (Response response = client.newCall(request).execute()) {
@@ -48,7 +52,7 @@ public class GithubProvider {
     public GithubUserDto getUser(String accessToken) {
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
-                .url(ConstantUtil.GET_USER_URL+accessToken)
+                .url(gitHubArgs.getUserUrl()+accessToken)
                 .build();
         try (Response response = client.newCall(request).execute()) {
             String userStr = response.body().string();
