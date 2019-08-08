@@ -34,6 +34,10 @@ DROP TABLE IF EXISTS `user`;
       PRIMARY KEY (`id`)
     ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 ~~~
+## flyway执行脚本
+~~~
+mvn flyway:migrate
+~~~
     
 
 
