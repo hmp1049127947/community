@@ -18,7 +18,8 @@
         <java.version>1.8</java.version>
         <okhttp.version>4.0.1</okhttp.version>
         <fastjson.version>1.2.58</fastjson.version>
-        <h2.version>1.4.196</h2.version>
+        <mybatis-spring.version>2.1.0</mybatis-spring.version>
+        <mysql.version>5.1.47</mysql.version>
     </properties>
 
     <dependencies>
@@ -31,6 +32,13 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-jdbc -->
+        <!--HikariPool springboot推荐的连接池-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>
 
         <dependency>
@@ -49,12 +57,19 @@
             <artifactId>okhttp</artifactId>
             <version>${okhttp.version}</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
         <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>${h2.version}</version>
-            <scope>test</scope>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
+        </dependency>
+
+
+
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>${mybatis-spring.version}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
@@ -66,8 +81,8 @@
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId> spring-boot-configuration-processor </artifactId>
-            <optional> true </optional>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
         </dependency>
 
 

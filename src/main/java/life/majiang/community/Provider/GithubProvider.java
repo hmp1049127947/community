@@ -5,7 +5,6 @@ import com.alibaba.fastjson.JSONObject;
 import life.majiang.community.GitHubArgs;
 import life.majiang.community.dto.AccessTokenDto;
 import life.majiang.community.dto.GithubUserDto;
-import life.majiang.community.util.ConstantUtil;
 import okhttp3.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

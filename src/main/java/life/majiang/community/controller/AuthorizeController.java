@@ -4,6 +4,8 @@ import life.majiang.community.GitHubArgs;
 import life.majiang.community.Provider.GithubProvider;
 import life.majiang.community.dto.AccessTokenDto;
 import life.majiang.community.dto.GithubUserDto;
+import life.majiang.community.mapper.UserMapper;
+import life.majiang.community.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.AccessControlContext;
+import java.util.UUID;
 
 /**
  * @author 黄明潘
@@ -26,6 +29,8 @@ public class AuthorizeController {
     private GithubProvider githubProvider;
     @Autowired
     private GitHubArgs gitHubargs;
+    @Autowired
+    private UserMapper userMapper;
 
     @GetMapping("/callback")
     public String callback(@RequestParam("code") String code,
@@ -38,10 +43,17 @@ public class AuthorizeController {
         accessTokenDto.setState(state);
         String accessToken = githubProvider.getAccessToken(accessTokenDto);
         String[] strings = accessToken.split("&");
-        GithubUserDto user = githubProvider.getUser(strings[0]);
-        System.out.println(user.toString());
-        if (user != null) {
-            request.getSession().setAttribute("user", user);
+        GithubUserDto userDto = githubProvider.getUser(strings[0]);
+        System.out.println(userDto.toString());
+        if (userDto != null) {
+            User user = new User();
+            user.setToken(UUID.randomUUID().toString());
+            user.setName(userDto.getName());
+            user.setAccountId(userDto.getId().toString());
+            user.setGmtCreate(System.currentTimeMillis());
+            user.setGmtModified(user.getGmtCreate());
+            userMapper.insertUser(user);
+            request.getSession().setAttribute("user", userDto);
             return "redirect:/";
         } else {
             return "redirect:/";
