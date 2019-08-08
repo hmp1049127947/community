@@ -8,7 +8,7 @@
 [Thymeleaf文档](https://spring.io/guides/gs/serving-web-content/)  （模板引擎）
 
 [github OAuth](https://developer.github.com/apps/building-oauth-apps/creating-an-oauth-app/) （通过GitHub API登录社区）
-
+[flyway](https://flywaydb.org/getstarted/firststeps/maven) （sql版本控制）
 
 ### 所用工具
 [Visual Paradigm](https://www.visual-paradigm.com/cn/download/) （用来画uml时序图）
