@@ -22,7 +22,8 @@
 ![githubLogin](images/git登录时序图.jpg)
 
 ## user表脚本"
-    DROP TABLE IF EXISTS `user`;
+~~~sql
+DROP TABLE IF EXISTS `user`;
     CREATE TABLE `user` (
       `id` int(11) NOT NULL AUTO_INCREMENT,
       `account_id` varchar(100) DEFAULT NULL,
@@ -32,6 +33,7 @@
       `gmt_modified` bigint(20) DEFAULT NULL,
       PRIMARY KEY (`id`)
     ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+~~~
     
 
 
